@@ -3,24 +3,22 @@ require 'sinatra'
 require 'dm-core'
 require 'lib/novelty'
 require 'open-uri'
+require 'config'
 
 get '/' do
 	<<-EOF
 	<html>
 	<body>
-		<center>
 		Is this novel?
 		<form method='POST'>
 			<input type='text' name='url'/>
 		</form>
-		</center>
 	</body>
 	</html>
 	EOF
 end
 
 post "/" do
-	DataMapper.setup(:default, "sqlite3:///Users/matt/entp/isthisnovel/isthisnovel.db")
 	unless params[:url]
 		redirect "/"
 	end
